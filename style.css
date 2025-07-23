@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #000;
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  perspective: 1200px;
+}
+
+.card-container {
+  width: 280px;
+  height: 360px;
+  perspective: 1500px;
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+/* Hover 3D tilt */
+@media (hover: hover) {
+  .card-container:hover {
+    transform: rotateX(6deg) rotateY(-6deg);
+  }
+}
+
+.card-container.flipped .card {
+  transform: rotateY(180deg);
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.9s ease;
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.front {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transform: rotateY(0deg) translateZ(1px);
+}
+
+.front img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.front h2 {
+  margin: 10px 0;
+  transform: translateZ(10px);
+}
+
+.front button {
+  background: linear-gradient(to right, #ff4081, #ff80ab);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transform: translateZ(10px);
+  transition: 0.3s;
+}
+
+.front button:hover {
+  background: linear-gradient(to right, #f50057, #ec407a);
+}
+
+.back {
+  background: #fff;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.mantra {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #333;
+  text-align: center;
+  transform: translateZ(10px);
+}
+
+@media(max-width: 600px) {
+  .card-container {
+    width: 90%;
+  }
+}
